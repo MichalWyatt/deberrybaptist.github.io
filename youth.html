@@ -3,43 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Youth Ministry | De Berry Baptist</title>
+  <title>Youth | De Berry Baptist</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body{margin:0;font-family:Georgia,serif;background:#fef9e7}
-    #logoBanner{position:fixed;top:0;left:0;width:100%;background:#000;text-align:center;z-index:9999;opacity:1;transition:opacity .8s}
-    #logoVideo{max-width:90%;max-height:80vh;margin:20px auto;border-radius:12px}
-    .gold-bar{background:#b8860b;padding:12px 0;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.3);position:sticky;top:0;z-index:999}
-    .gold-bar a{color:white;margin:0 20px;text-decoration:none;font-weight:bold;font-size:1.1rem}
+    body{margin:0;font-family:Georgia,serif;background:#fef9e7;color:#333}
+    .gold-bar{background:#b8860b;padding:6px 0;text-align:center;position:sticky;top:0;z-index:999;
+              box-shadow:0 4px 15px rgba(0,0,0,.4);transition:transform .3s;font-size:0.95rem}
+    .gold-bar a{color:white;margin:0 10px;text-decoration:none;font-weight:bold}
     .gold-bar a:hover{text-decoration:underline}
-    @media(max-width:768px){.gold-bar a{display:block;margin:12px 0}}
+    @media(max-width:768px){.gold-bar a{display:block;margin:8px 0}}
+    .scrolled .gold-bar{transform:translateY(-100%)}
   </style>
 </head>
 <body>
-  <div id="logoBanner">
-    <video id="logoVideo" playsinline muted preload="auto">
-      <source src="logo.mp4" type="video/mp4">
-    </video>
-  </div>
-
   <div class="gold-bar">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="beliefs.html">Beliefs & Leaders</a>
+    <a href="beliefs.html">Beliefs</a>
     <a href="prayer.html">Prayer</a>
     <a href="youth.html">Youth</a>
     <a href="events.html">Events</a>
+    <a href="give.html">Give</a>
   </div>
 
   <div class="container py-5 text-center">
-    <h1 class="fw-bold mb-4">Youth Ministry</h1>
+    <h1 class="fw-bold mb-4" style="color:#b8860b">Youth Ministry</h1>
     <p class="lead">Wednesdays 6PM • Ages 5–18</p>
-    <p class="display-6">Jesus + Pizza + Games = Changed Lives</p>
-    <img src="https://via.placeholder.com/800x400?text=YOUTH+NIGHT" class="img-fluid rounded mt-4" style="max-width:90%">
+    <p class="display-5 mb-5">Jesus + Pizza + Games = Changed Lives</p>
+    <img src="https://via.placeholder.com/900x500?text=YOUTH+NIGHT+FUN" class="img-fluid rounded shadow" style="max-width:90%">
+    <p class="mt-4 fs-4">Bring a friend • Bring your Bible • Bring your appetite!</p>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById('logoBanner'),v=document.getElementById('logoVideo');b.style.opacity='1';v.play();setTimeout(()=>{b.style.opacity='0';setTimeout(()=>b.style.display='none',800)},7000)});
+    let y=0;window.onscroll=()=>{if(innerWidth<=768){if(scrollY>y&&scrollY>80)document.body.classList.add('scrolled');else document.body.classList.remove('scrolled');y=scrollY}};
   </script>
 </body>
 </html>
