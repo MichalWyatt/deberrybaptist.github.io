@@ -12,22 +12,19 @@
     .gold-bar{background:#b8860b;padding:12px 0;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.3);position:sticky;top:0;z-index:999}
     .gold-bar a{color:white;margin:0 20px;text-decoration:none;font-weight:bold;font-size:1.1rem}
     .gold-bar a:hover{text-decoration:underline}
-    .hero{background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('https://via.placeholder.com/1200x600?text=De+Berry+Baptist');background-size:cover;padding:140px 20px;color:white;text-align:center}
-    .btn-glow{background:#b8860b;color:white;padding:12px 30px;border-radius:50px;box-shadow:0 0 20px #b8860b}
-    .btn-glow:hover{background:#d4a017;box-shadow:0 0 30px #d4a017}
-    @media(max-width:768px){.gold-bar a{display:block;margin:10px 0}}
+    .hero{background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('https://via.placeholder.com/1200x600?text=De+Berry+Baptist');background-size:cover;padding:160px 20px;color:white;text-align:center}
+    .btn-glow{background:#b8860b;color:white;padding:14px 36px;border-radius:50px;box-shadow:0 0 25px #b8860b;font-size:1.2rem}
+    .btn-glow:hover{background:#d4a017;box-shadow:0 0 35px #d4a017}
+    @media(max-width:768px){.gold-bar a{display:block;margin:12px 0}}
   </style>
 </head>
 <body>
-
-  <!-- 7-sec logo -->
   <div id="logoBanner">
     <video id="logoVideo" playsinline muted preload="auto">
       <source src="logo.mp4" type="video/mp4">
     </video>
   </div>
 
-  <!-- GOLD BAR – stays on every page -->
   <div class="gold-bar">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -37,26 +34,23 @@
     <a href="events.html">Events</a>
   </div>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <h1 class="display-4 fw-bold">Come as You Are</h1>
-      <p class="lead">Sunday 9:30 • 10:30 • 4PM  ✦  Wednesday Kids 6PM</p>
+      <h1 class="display-3 fw-bold mb-4">Come as You Are</h1>
+      <p class="lead mb-4">Sunday 9:30 • 10:30 • 4PM ✦ Wednesday Kids 6PM</p>
       <a href="prayer.html" class="btn-glow">Send a Prayer</a>
     </div>
   </section>
 
-  <!-- GIVING -->
-  <section class="container py-5 text-center">
+  <div class="container py-5 text-center">
     <h2 class="fw-bold mb-4">Give Securely</h2>
     <script src="https://donorbox.org/widget.js" paypalExpress="false"></script>
     <iframe src="https://donorbox.org/embed/de-berry-baptist-church"
-            style="max-width:480px;min-width:310px;height:670px;border:none;margin:auto"
+            style="max-width:500px;min-width:310px;height:670px;border:none;margin:30px auto;display:block"
             seamless frameborder="0" allowpaymentrequest></iframe>
-  </section>
+  </div>
 
   <script>
-    // 7-sec logo
     document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById('logoBanner'),v=document.getElementById('logoVideo');b.style.opacity='1';v.play();setTimeout(()=>{b.style.opacity='0';setTimeout(()=>b.style.display='none',800)},7000)});
   </script>
 </body>

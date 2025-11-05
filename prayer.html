@@ -1,7 +1,88 @@
-<!-- SAME header & gold bar -->
-<div class="container py-5"><h1 class="text-center fw-bold">Prayer Request</h1>
-<form class="col-md-6 mx-auto p-4 bg-white rounded shadow">
-  <input class="form-control mb-3" placeholder="Name">
-  <textarea class="form-control mb-3" rows="5" placeholder="Your prayer..."></textarea>
-  <button class="btn btn-glow w-100">Send</button>
-</form></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prayer Request | De Berry Baptist</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Georgia,serif;background:#fef9e7}
+    #logoBanner{position:fixed;top:0;left:0;width:100%;background:#000;text-align:center;z-index:9999;opacity:1;transition:opacity .8s}
+    #logoVideo{max-width:90%;max-height:80vh;margin:20px auto;border-radius:12px}
+    .gold-bar{background:#b8860b;padding:12px 0;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.3);position:sticky;top:0;z-index:999}
+    .gold-bar a{color:white;margin:0 20px;text-decoration:none;font-weight:bold;font-size:1.1rem}
+    .gold-bar a:hover{text-decoration:underline}
+    .confidential{color:#8B4513;font-weight:bold}
+    @media(max-width:768px){.gold-bar a{display:block;margin:12px 0}}
+  </style>
+</head>
+<body>
+  <div id="logoBanner">
+    <video id="logoVideo" playsinline muted preload="auto">
+      <source src="logo.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="gold-bar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="beliefs.html">Beliefs & Leaders</a>
+    <a href="prayer.html">Prayer</a>
+    <a href="youth.html">Youth</a>
+    <a href="events.html">Events</a>
+  </div>
+
+  <div class="container py-5">
+    <h1 class="text-center fw-bold mb-4">Send a Prayer Request</h1>
+    <form class="col-md-6 mx-auto p-4 bg-white rounded shadow">
+      <input class="form-control mb-3" placeholder="Your Name" required>
+      <input class="form-control mb-3" type="email" placeholder="Email (optional)">
+      
+      <!-- NEW: Optional Phone -->
+      <input class="form-control mb-3" type="tel" placeholder="Phone (optional – if you would like us to call you)" 
+             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Format: 9035551234">
+
+      <textarea class="form-control mb-3" rows="5" placeholder="Your prayer need..." required></textarea>
+
+      <!-- CONFIDENTIAL -->
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" id="confidential">
+        <label class="form-check-label confidential" for="confidential">
+          Keep this prayer CONFIDENTIAL (Pastor & Elders only)
+        </label>
+      </div>
+
+      <!-- PERFECT-SIZED GLOW BUTTON -->
+      <button class="btn w-100 position-relative overflow-hidden" 
+              style="background:linear-gradient(45deg,#b8860b,#d4a017,#b8860b);
+                     color:white; padding:12px 20px; font-weight:bold; font-size:1.1rem;
+                     border:none; border-radius:50px; 
+                     box-shadow:0 0 25px #b8860b, inset 0 0 15px rgba(255,255,255,.3);
+                     transition:all .4s; max-width:380px; margin:0 auto; display:block;">
+        <span style="text-shadow:0 2px 8px #000">SEND TO PRAYER TEAM</span>
+        <span class="position-absolute top-50 start-50 translate-middle" 
+              style="width:200%; height:300%; background:rgba(255,255,255,.25);
+                     transform:translateX(-100%) rotate(45deg); transition:0.8s;"></span>
+      </button>
+
+      <!-- GLOW ANIMATION -->
+      <script>
+        const btn = document.querySelector('form button');
+        btn.addEventListener('click', e => {
+          e.preventDefault(); // remove later when you add real submit
+          const glow = btn.querySelector('span:last-child');
+          glow.style.transform = 'translateX(100%) rotate(45deg)';
+          setTimeout(() => glow.style.transform = 'translateX(-100%) rotate(45deg)', 800);
+          // Optional: show alert
+          setTimeout(() => alert('Prayer sent! Pastor Eric will call if you left a number.'), 900);
+        });
+      </script>
+    </form>
+  </div>
+
+  <!-- 7-sec logo -->
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{const b=document.getElementById('logoBanner'),v=document.getElementById('logoVideo');b.style.opacity='1';v.play();setTimeout(()=>{b.style.opacity='0';setTimeout(()=>b.style.display='none',800)},7000)});
+  </script>
+</body>
+</html>
