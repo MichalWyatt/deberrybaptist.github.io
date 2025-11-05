@@ -11,11 +11,12 @@
     .hero video{position:absolute;top:50%;left:50%;width:40%;height:auto;object-fit:contain;
                 transform:translate(-50%,-50%) scale(0.4);opacity:0;transition:all 4s ease-out;z-index:1}
     .hero.playing video{width:120%;transform:translate(-50%,-50%) scale(1);opacity:1}
+    .hero.frozen video{transition:none}
     .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.6);z-index:2}
     .hero-content{position:relative;z-index:3;padding:20px}
     .hero h1{font-size:3.5rem;text-shadow:0 4px 20px #000}
     .btn-live{background:#b8860b;color:white;padding:16px 50px;border-radius:50px;
-              box-shadow:0 0 30px #b8860b;font-weight:bold;font-size:1.3rem}
+              box-shadow:0 0 30px #b8860b;font-weight:bold;font-size:1.3rem;transition:.3s}
     .btn-live:hover{box-shadow:0 0 40px #d4a017;transform:scale(1.05)}
     .gold-bar{background:#b8860b;padding:6px 0;text-align:center;position:sticky;top:0;z-index:999;
               box-shadow:0 4px 15px rgba(0,0,0,.4);transition:transform .3s;font-size:0.95rem}
@@ -41,7 +42,7 @@
     </video>
     <div class="hero-content container">
       <h1 class="display-3 fw-bold mb-3">Come as You Are</h1>
-      <p class="lead mb-4">Sunday 9:30 • 10:30 • 4PM  ✦  Wednesday Kids 6PM</p>
+      <p class="lead mb-4">Sunday 9:30 • 10:30 • 4PM  Wednesday Kids 6PM</p>
       <button id="watchLiveBtn" class="btn-live">Watch Live</button>
     </div>
   </section>
@@ -70,10 +71,30 @@
   <div class="container py-5 bg-white text-dark">
     <h2 class="text-center fw-bold mb-5" style="color:#b8860b">Pastor Eric’s Latest Teachings</h2>
     <div class="row g-4">
-      <div class="col-md-6"><h5>Good Friday</h5><div class="ratio ratio-16x9 rounded shadow"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F2649482865161739%2F"></iframe></div></div>
-      <div class="col-md-6"><h5>Prayer In The Garden</h5><div class="ratio ratio-16x9 rounded shadow"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F219823412690965%2F"></iframe></div></div>
-      <div class="col-md-6"><h5>Maundy Thursday</h5><div class="ratio ratio-16x9 rounded shadow"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F269338384075784%2F"></iframe></div></div>
-      <div class="col-md-6"><h5>The Power of the Cross</h5><div class="ratio ratio-16x9 rounded shadow"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F157955315477698%2F"></iframe></div></div>
+      <div class="col-md-6">
+        <h5>Good Friday</h5>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F2649482865161739%2F" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h5>Prayer In The Garden</h5>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F219823412690965%2F" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h5>Maundy Thursday</h5>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F269338384075784%2F" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h5>The Power of the Cross</h5>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F157955315477698%2F" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -90,30 +111,64 @@
   <div class="container py-5 bg-white">
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active"><img src="https://via.placeholder.com/1200x500?text=Potluck+Joy" class="d-block w-100 rounded"></div>
-        <div class="carousel-item"><img src="https://via.placeholder.com/1200x500?text=Youth+Night" class="d-block w-100 rounded"></div>
-        <div class="carousel-item"><img src="https://via.placeholder.com/1200x500?text=Baptism+Sunday" class="d-block w-100 rounded"></div>
+        <div class="carousel-item active">
+          <img src="https://via.placeholder.com/1200x500?text=Potluck+Joy" class="d-block w-100 rounded" alt="Potluck">
+        </div>
+        <div class="carousel-item">
+          <img src="https://via.placeholder.com/1200x500?text=Youth+Night" class="d-block w-100 rounded" alt="Youth Night">
+        </div>
+        <div class="carousel-item">
+          <img src="https://via.placeholder.com/1200x500?text=Baptism+Sunday" class="d-block w-100 rounded" alt="Baptism">
+        </div>
       </div>
-      <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-      <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+      <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
   </div>
 
   <!-- FLOATING PLAYER -->
-  <div id="livePlayer"><div id="closeLive">X</div>
-    <iframe id="floatLive" src="" allow="autoplay"></iframe>
+  <div id="livePlayer">
+    <div id="closeLive">X</div>
+    <iframe id="floatLive" src="" allow="autoplay" allowfullscreen></iframe>
   </div>
 
+  <!-- SCRIPTS -->
   <script>
-    const vid=document.getElementById('heroVid'),hero=document.getElementById('hero');
-    vid.play();hero.classList.add('playing');vid.onended=()=>hero.classList.add('frozen');
-    const btn=document.getElementById('watchLiveBtn'),live=document.getElementById('liveSection'),
-          player=document.getElementById('livePlayer'),float=document.getElementById('floatLive'),
-          close=document.getElementById('closeLive'),yt=document.getElementById('youtubeLive');
-    btn.onclick=()=>{live.scrollIntoView({behavior:'smooth'});float.src=yt.src;player.classList.add('show')};
-    close.onclick=()=>{player.classList.remove('show');float.src=''};
-    let y=0;window.onscroll=()=>{if(innerWidth<=768){if(scrollY>y&&scrollY>80)document.body.classList.add('scrolled');
-    else document.body.classList.remove('scrolled');y=scrollY}};
+    const vid = document.getElementById('heroVid');
+    const hero = document.getElementById('hero');
+    vid.play();
+    hero.classList.add('playing');
+    vid.onended = () => hero.classList.add('frozen');
+
+    const btn = document.getElementById('watchLiveBtn');
+    const live = document.getElementById('liveSection');
+    const player = document.getElementById('livePlayer');
+    const float = document.getElementById('floatLive');
+    const close = document.getElementById('closeLive');
+    const yt = document.getElementById('youtubeLive');
+
+    btn.onclick = () => {
+      live.scrollIntoView({behavior:'smooth'});
+      float.src = yt.src;
+      player.classList.add('show');
+    };
+    close.onclick = () => {
+      player.classList.remove('show');
+      float.src = '';
+    };
+
+    let y = 0;
+    window.onscroll = () => {
+      if (innerWidth <= 768) {
+        if (scrollY > y && scrollY > 80) document.body.classList.add('scrolled');
+        else document.body.classList.remove('scrolled');
+        y = scrollY;
+      }
+    };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
