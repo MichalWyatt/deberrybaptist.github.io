@@ -25,29 +25,30 @@
         .animate-fade-out { animation: fadeOut 1s ease-out forwards; }
     </style>
 </head>
-        <script>
-      // 7-second logo — EVERY TIME you refresh
-      const vid   = document.getElementById('logoVideo');
-      const popup = document.getElementById('logoPopup');
+           <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const vid = document.getElementById('logoVideo');
+        const popup = document.getElementById('logoPopup');
 
-      // Show + force-play on phones
-      popup.style.display = 'block';
-      popup.style.opacity = '1';
-      vid.currentTime = 0;
-      vid.play();
+        // Show + force play
+        popup.style.display = 'block';
+        popup.style.opacity = '1';
+        vid.currentTime = 0;
+        vid.play().catch(() => {}); // iPhone fix
 
-      // Fade out at exactly 7 seconds
-      setTimeout(() => {
-        popup.style.opacity = '0';
-        setTimeout(() => popup.style.display = 'none', 800);
-      }, 7000);
+        // Fade out at 7 seconds
+        setTimeout(() => {
+          popup.style.transition = 'opacity 0.8s';
+          popup.style.opacity = '0';
+          setTimeout(() => popup.style.display = 'none', 800);
+        }, 7000);
+      });
     </script>
 <body>
 
-        <!-- Logo Video Popup (first visit only) -->
-        <!-- 7-second logo popup (first visit only) -->
+            <!-- 7-second logo popup — EVERY REFRESH -->
     <div id="logoPopup" class="logo-popup">
-        <video id="logoVideo" class="video-logo" autoplay muted playsinline>
+        <video id="logoVideo" class="video-logo" preload="auto" playsinline muted>
             <source src="logo.mp4" type="video/mp4">
         </video>
     </div>
