@@ -1,48 +1,59 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home | De Berry Baptist</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-  body{margin:0;font-family:Georgia,serif;background:#111}
-  /* HERO VIDEO – plays once, then FREEZES */
-  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white}
-  .hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
-  .hero::after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:2}
-  .hero-content{position:relative;z-index:3;padding:20px}
-  .hero h1{font-size:3.5rem;text-shadow:0 4px 20px #000}
-  .hero p{font-size:1.5rem;text-shadow:0 2px 10px #000}
-  .btn-glow{background:#b8860b;color:white;padding:14px 40px;border-radius:50px;
-            box-shadow:0 0 30px #b8860b;font-weight:bold;transition:.3s}
-  .btn-glow:hover{box-shadow:0 0 40px #d4a017;transform:scale(1.05)}
-
-  /* TINY GOLD BAR */
-  .gold-bar{background:#b8860b;padding:8px 0;text-align:center;position:sticky;top:0;z-index:999;
-            box-shadow:0 4px 15px rgba(0,0,0,.4);transition:transform .3s}
-  .gold-bar a{color:white;margin:0 12px;font-weight:bold;text-decoration:none;font-size:1rem}
-  .gold-bar a:hover{text-decoration:underline}
-  @media(max-width:768px){
-    .gold-bar{padding:5px 0;font-size:0.9rem}
-    .gold-bar a{margin:0 8px;display:block}
-    .hero h1{font-size:2.5rem}
-  }
-  .scrolled .gold-bar{transform:translateY(-100%)}
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | De Berry Baptist</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Georgia,serif;background:#111}
+    .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;color:white}
+    .hero video{position:absolute;top:50%;left:50%;width:40%;height:auto;object-fit:contain;
+                transform:translate(-50%,-50%) scale(0.4);opacity:0;transition:all 4s ease-out;z-index:1}
+    .hero.playing video{width:120%;transform:translate(-50%,-50%) scale(1);opacity:1}
+    .hero.frozen video{transition:none}
+    .hero::after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);z-index:2}
+    .hero-content{position:relative;z-index:3;padding:20px}
+    .hero h1{font-size:3.5rem;text-shadow:0 4px 20px #000}
+    .hero p{font-size:1.5rem;text-shadow:0 2px 10px #000}
+    .btn-live{background:#b8860b;color:white;padding:16px 50px;border-radius:50px;
+              box-shadow:0 0 30px #b8860b;font-weight:bold;font-size:1.3rem;transition:.3s}
+    .btn-live:hover{box-shadow:0 0 40px #d4a017;transform:scale(1.05)}
+    .gold-bar{background:#b8860b;padding:8px 0;text-align:center;position:sticky;top:0;z-index:999;
+              box-shadow:0 4px 15px rgba(0,0,0,.4);transition:transform .3s}
+    .gold-bar a{color:white;margin:0 12px;font-weight:bold;text-decoration:none;font-size:1rem}
+    .gold-bar a:hover{text-decoration:underline}
+    @media(max-width:768px){
+      .gold-bar{padding:5px 0;font-size:0.9rem}
+      .gold-bar a{margin:0 8px;display:block}
+      .hero h1{font-size:2.5rem}
+    }
+    .scrolled .gold-bar{transform:translateY(-100%)}
+    /* FLOATING LIVE PLAYER */
+    #livePlayer{position:fixed;bottom:20px;right:20px;width:360px;height:240px;
+                 border:4px solid #b8860b;border-radius:12px;box-shadow:0 0 30px #b8860b;
+                 z-index:9999;display:none;background:#000}
+    #livePlayer.show{display:block}
+    #closeLive{position:absolute;top:-12px;right:-12px;width:36px;height:36px;
+               background:#b8860b;color:white;border-radius:50%;font-size:1.5rem;
+               line-height:36px;text-align:center;cursor:pointer;z-index:10000}
+  </style>
 </head>
 <body>
 
-  <!-- HERO WITH LOGO VIDEO -->
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" id="hero">
     <video playsinline muted preload="auto" id="heroVid">
       <source src="logo.mp4" type="video/mp4">
     </video>
     <div class="hero-content container">
       <h1 class="display-3 fw-bold mb-3">Come as You Are</h1>
-      <p class="lead mb-4">Sunday 9:30 • 10:30 • 4PM ✦ Wednesday Kids 6PM</p>
-      <a href="prayer.html" class="btn-glow">Send a Prayer</a>
+      <p class="lead mb-4">Sunday 9:30 • 10:30 • 4PM  ✦  Wednesday Kids 6PM</p>
+      <button id="watchLiveBtn" class="btn-live">Watch Live</button>
     </div>
   </section>
 
-  <!-- TINY GOLD BAR -->
+  <!-- GOLD BAR -->
   <div class="gold-bar">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -50,92 +61,89 @@
     <a href="prayer.html">Prayer</a>
     <a href="youth.html">Youth</a>
     <a href="events.html">Events</a>
+    <a href="give.html">Give</a>
   </div>
 
-  <!-- 5 NEW SECTIONS – pick any 3 -->
-  <div class="container py-5 text-center">
-    <h2 class="fw-bold mb-5" style="color:#b8860b">Welcome Home</h2>
-
-    <!-- 1. LIVE SERMON CLIP -->
-    <div class="ratio ratio-16x9 mb-5 rounded shadow-lg">
-      <iframe src="https://www.youtube.com/embed/YOUR_SERMON_ID" allowFullScreen></iframe>
+  <!-- LIVE STREAM SECTION -->
+  <div class="container py-5 bg-white" id="liveSection">
+    <h2 class="text-center fw-bold mb-5" style="color:#b8860b">Live Stream</h2>
+    <div class="ratio ratio-16x9 rounded shadow">
+      <iframe id="youtubeLive" src="https://www.youtube.com/embed/LIVE_STREAM_ID?autoplay=1&mute=0" 
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
+    <p class="text-center mt-3 text-muted">Sundays at 10:30 AM • Join us from anywhere!</p>
+  </div>
 
-    <!-- 2. 3 QUICK LINKS -->
-    <div class="row g-4 mb-5">
-      <div class="col-md-4"><div class="p-4 bg-white rounded shadow"><h4>Visit Us</h4><p>2084 FM 31 N<br>De Berry, TX</p></div></div>
-      <div class="col-md-4"><div class="p-4 bg-white rounded shadow"><h4>Call</h4><p>903-766-3845</p></div></div>
-      <div class="col-md-4"><div class="p-4 bg-white rounded shadow"><h4>Facebook</h4><p>@DeBerryBaptist</p></div></div>
-    </div>
-
-    <!-- 3. PHOTO SLIDER -->
-    <div class="mb-5">
-      <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active"><img src="https://via.placeholder.com/800x400?text=Potluck+Joy" class="d-block w-100 rounded"></div>
-          <div class="carousel-item"><img src="https://via.placeholder.com/800x400?text=Youth+Night" class="d-block w-100 rounded"></div>
+  <!-- 4 SERMONS -->
+  <div class="container py-5 text-center bg-white">
+    <h2 class="fw-bold mb-4" style="color:#b8860b">Pastor Eric’s Latest Teachings</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6">
+        <h4 class="mb-3">Good Friday</h4>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F2649482865161739%2F" allowfullscreen></iframe>
         </div>
-        <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-        <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+      </div>
+      <div class="col-md-6">
+        <h4 class="mb-3">Prayer In The Garden</h4>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F219823412690965%2F" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="mb-3">Maundy Thursday</h4>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F269338384075784%2F" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="mb-3">The Power of the Cross</h4>
+        <div class="ratio ratio-16x9 rounded shadow">
+          <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F157955315477698%2F" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
-
-   <!-- PASTOR ERIC'S 4 VIDEOS – clean & centered -->
-<div class="container py-5 bg-white">
-  <h2 class="text-center fw-bold mb-5" style="color:#b8860b">Pastor Eric’s Latest Teachings</h2>
-  <div class="row g-4 justify-content-center">
-
-    <div class="col-md-6">
-      <h4 class="mb-3 text-center">Good Friday</h4>
-      <div class="ratio ratio-16x9 rounded shadow">
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F2649482865161739%2F" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <h4 class="mb-3 text-center">Prayer In The Garden</h4>
-      <div class="ratio ratio-16x9 rounded shadow">
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F219823412690965%2F" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <h4 class="mb-3 text-center">Maundy Thursday</h4>
-      <div class="ratio ratio-16x9 rounded shadow">
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F269338384075784%2F" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <h4 class="mb-3 text-center">The Power of the Cross</h4>
-      <div class="ratio ratio-16x9 rounded shadow">
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F921367334650416%2Fvideos%2F157955315477698%2F" 
-                allowfullscreen></iframe>
-      </div>
-    </div>
-
   </div>
-  <p class="text-center mt-4 text-muted">
-    New message every Sunday • <a href="teachings.html">Watch All</a>
-  </p>
-</div>
 
+  <!-- FLOATING LIVE PLAYER (keeps playing!) -->
+  <div id="livePlayer">
+    <div id="closeLive">X</div>
+    <iframe id="floatingLive" src="" allow="autoplay" allowfullscreen></iframe>
   </div>
-  <p class="mt-4 text-muted">New message every Sunday • <a href="teachings.html">Watch All →</a></p>
-</div>
 
-    </div>
-
+  <!-- SCRIPTS -->
   <script>
-    // PLAY ONCE → FREEZE
+    // 1. Logo: tiny → huge → freeze
     const vid = document.getElementById('heroVid');
+    const hero = document.getElementById('hero');
     vid.play();
-    vid.addEventListener('ended', () => vid.pause());
+    hero.classList.add('playing');
+    vid.addEventListener('ended', () => {
+      vid.pause();
+      hero.classList.add('frozen');
+    });
 
-    // HIDE BAR ON SCROLL (phones)
+    // 2. Watch Live Button
+    const watchBtn = document.getElementById('watchLiveBtn');
+    const liveSection = document.getElementById('liveSection');
+    const player = document.getElementById('livePlayer');
+    const floating = document.getElementById('floatingLive');
+    const closeBtn = document.getElementById('closeLive');
+    const youtubeLive = document.getElementById('youtubeLive');
+
+    watchBtn.addEventListener('click', () => {
+      liveSection.scrollIntoView({ behavior: 'smooth' });
+      // Clone the live stream into floating player
+      floating.src = youtubeLive.src;
+      player.classList.add('show');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      player.classList.remove('show');
+      floating.src = '';
+    });
+
+    // 3. Hide gold bar on scroll
     let lastY = 0;
     window.addEventListener('scroll', () => {
       if (window.innerWidth <= 768) {
@@ -148,4 +156,5 @@
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body></html>
+</body>
+</html>
